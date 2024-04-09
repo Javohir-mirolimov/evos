@@ -177,7 +177,12 @@ class Image(models.Model):
 class Testimonial(models.Model):
     fullame = models.CharField(max_length=55, verbose_name="ism familiya")
     comment = models.TextField(verbose_name="komentariya")
-    ijtimoviy_tarmoq = models.CharField(max_length=55)
+    TYPE_CHOICES = (
+        ('telegram', 'telegram')
+        ('facebook', 'facebook')
+        ('instagram', 'instagram')
+    )
+    type = models.CharField(max_length=25, choices=TYPE_CHOICES)
 
     def __str__(self):
         return self.fullame
@@ -186,4 +191,27 @@ class Testimonial(models.Model):
         verbose_name = 'izoh'
         verbose_name_plural = 'izohlar'
 
-    
+
+class Conact(models.Model):
+    phone_number = models.CharField(max_length=13, verbose_name="telefon raqam")
+    extra_number = models.CharField(max_length=13 , verbose_name="yetgazib beruvchi telefon raqami")
+    ofis_address = models.CharField(max_length=75, verbose_name="mazil ofis")
+
+    class Meta:
+        verbose_name = 'kontak'
+        verbose_name_plural = 'kontaklar'
+
+
+class Info(models.Model):
+    telegram = models.CharField(max_length=255, verbose_name="telegram")
+    instagram = models.CharField(max_length=255, verbose_name="instagram")
+    facebook = models.CharField(max_length=255, verbose_name="facebook")
+    play_market = models.CharField(max_length=255, verbose_name="play_market")
+    app_store = models.CharField(max_length=255, verbose_name="app_store")
+    banner_logo = models.ImageField(upload_to="banner_logo/", verbose_name="banner_logo")
+    banner_photo = models.ImageField(upload_to="banner_photo/", verbose_name="banner_photo")
+
+    class Meta:
+        verbose_name = 'info'
+        verbose_name_plural = 'infolar'
+
