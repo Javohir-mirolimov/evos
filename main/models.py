@@ -107,8 +107,83 @@ class Job_benefit(models.Model):
 
 
 class Career(models.Model):
+    fullname = models.CharField(max_length=75, verbose_name="ism familiya")
+    bio = models.TextField(verbose_name="o'zi haqida malumot")
+    image = models.ImageField(upload_to="career_photo/" , verbose_name="rasm")
+
+    def __str__(self):
+        return self.fullname
+
+    class Meta:
+        verbose_name = 'karyera'
+        verbose_name_plural = 'karyeralar'
 
 
 
+class About_job(models.Model):
+    title = models.CharField(max_length=75, verbose_name="sarlavha")
+    text = models.TextField(verbose_name="malumot")
+
+
+    class Meta:
+        verbose_name = 'ish malumot '
+        verbose_name_plural = 'ish malumotlar'
+
+
+class New(models.Model):
+    title = models.CharField(max_length=75 , verbose_name="sarlavha")
+    text  = models.TextField(verbose_name="malumot")
+    image = models.ImageField(upload_to="new_photo/", verbose_name="rasm")
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'yangilik'
+        verbose_name_plural = 'yangiliklar'
+
+
+class About_us(models.Model):
+    title = models.CharField(max_length=55, verbose_name="sarlavha")
+    desciption = models.CharField(max_length=75, verbose_name="tarif")
+    text = models.TextField(verbose_name="malumot")
+    image = models.ImageField(upload_to="about_us/", verbose_name="rasm")
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'biz haqimizda'
+        verbose_name_plural = 'biz haqimizda'
+
+class Resume(models.Model):
+    title  = models.CharField(max_length=55, verbose_name="saravha")
+    text = models.TextField(verbose_name="malumot")
+    image = models.ForeignKey(to="Image" , verbose_name="rasm tanlash" , on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = 'rasm'
+        verbose_name_plural = 'rasmlar'
+
+
+class Image(models.Model):
+    image = models.ImageField(upload_to="resume_photo/" , verbose_name="rasm")
+
+
+
+class Testimonial(models.Model):
+    fullame = models.CharField(max_length=55, verbose_name="ism familiya")
+    comment = models.TextField(verbose_name="komentariya")
+    ijtimoviy_tarmoq = models.CharField(max_length=55)
+
+    def __str__(self):
+        return self.fullame
+
+    class Meta:
+        verbose_name = 'izoh'
+        verbose_name_plural = 'izohlar'
 
     
