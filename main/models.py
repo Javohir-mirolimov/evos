@@ -1,5 +1,20 @@
 from django.db import models
+from django.contrib.auth.models import AbstractUser
+from django.core.validators import RegexValidator
 
+class User(AbstractUser):
+    phone_number = models.CharField(max_length=13, unique=True, null=True, blank=True, validators=[
+        RegexValidator(
+            regex=r'^[\+]9{2}8{1}[0-9]{9}$',
+            message='Invalid phone number',
+            code='Invalid number'
+        )
+    ])
+
+    class Meta(AbstractUser.Meta):
+        swappable = 'AUTH_USER_MODEL'
+        verbose_name = 'User'
+        verbose_name_plural = 'Users'
 class Banner(models.Model):
     title = models.CharField(max_length=55, verbose_name="sarlavha")
     desciption = models.CharField(max_length=255, verbose_name="tarif")
@@ -21,10 +36,14 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
-
     class Meta:
         verbose_name = 'Maxsulot'
         verbose_name_plural = 'Maxsulotlar'
+class Basket(models.Model):
+    user = models.ForeignKey(to=User, on_delete=models.CASCADE)
+    product = models.ForeignKey(to='Product', on_delete=models.CASCADE)
+
+
 
 
 class Tag(models.Model):
@@ -178,9 +197,9 @@ class Testimonial(models.Model):
     fullame = models.CharField(max_length=55, verbose_name="ism familiya")
     comment = models.TextField(verbose_name="komentariya")
     TYPE_CHOICES = (
-        ('telegram', 'telegram')
-        ('facebook', 'facebook')
-        ('instagram', 'instagram')
+        ('telegram', 'telegram'),
+        ('facebook', 'facebook'),
+        ('instagram', 'instagram'),
     )
     type = models.CharField(max_length=25, choices=TYPE_CHOICES)
 

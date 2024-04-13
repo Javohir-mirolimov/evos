@@ -11,12 +11,14 @@ class BannerSer(serializers.ModelSerializer):
 class ProductSer(serializers.ModelSerializer):
     class Meta:
         models = Product
+        depth = 2
         fields = '__all__'
 
 
 class TagSer(serializers.ModelSerializer):
     class Meta:
         models = Tag
+        depth = 2
         fields = '__all__'
 
 
@@ -104,3 +106,8 @@ class InfoSer(serializers.ModelSerializer):
 
 
 
+class BasketSer(serializers.ModelSerializer):
+    class Meta:
+        models = Basket
+        depth = 4
+        fields = '__all__'
