@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     #------------apps-----------
     'main.apps.MainConfig',
     'account.apps.AccountConfig',
+    'dashboard.apps.DashboardConfig',
     #--------library------------
     'rest_framework',
 

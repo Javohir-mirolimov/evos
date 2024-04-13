@@ -15,6 +15,7 @@ class Banner(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=35, verbose_name="nomi")
     desciption = models.CharField(max_length=75, verbose_name="tarif")
+    retsept = models.TextField( verbose_name="tarif")
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="naxri")
     tag = models.ForeignKey(to='Tag', on_delete=models.CASCADE, verbose_name="teg")
     image = models.ImageField(upload_to="product_photo", verbose_name="rasm")
@@ -157,7 +158,7 @@ class About_us(models.Model):
         verbose_name_plural = 'biz haqimizda'
 
 class Resume(models.Model):
-    title  = models.CharField(max_length=55, verbose_name="saravha")
+    title = models.CharField(max_length=55, verbose_name="saravha")
     text = models.TextField(verbose_name="malumot")
     image = models.ForeignKey(to="Image" , verbose_name="rasm tanlash" , on_delete=models.CASCADE)
 
@@ -192,7 +193,7 @@ class Testimonial(models.Model):
         verbose_name_plural = 'izohlar'
 
 
-class Conact(models.Model):
+class Contact(models.Model):
     phone_number = models.CharField(max_length=13, verbose_name="telefon raqam")
     extra_number = models.CharField(max_length=13 , verbose_name="yetgazib beruvchi telefon raqami")
     ofis_address = models.CharField(max_length=75, verbose_name="mazil ofis")

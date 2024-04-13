@@ -91,9 +91,9 @@ class TestimonialSer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class ConactSer(serializers.ModelSerializer):
+class ContactSer(serializers.ModelSerializer):
     class Meta:
-        models = Conact
+        models = Contact
         fields = '__all__'
 
 
