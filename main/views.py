@@ -14,33 +14,34 @@ from .serializers import BasketSer  # Import your Basket serializer
 from .models import Basket, Product, Info  # Import your models
 
 
-@api_view(['GET'])
+@api_view(['GET', 'POST'])
 def cart_view(request):
-    basket = 0
-    if request.user.is_authenticated:
+    if request.method == 'GET':
         user = request.user
-        basket = Basket.objects.filter(user_id=user.id).count()
-    else:
-        basket = 0  # Set to 0 if user is not authenticated
+        if user.is_authenticated:
+            cart_items = Basket.objects.filter(user=user)
+            serializer = BasketSer(cart_items, many=True)
+            return Response(serializer.data)
+        else:
+            return Response({"message": "User is not authenticated"}, status=403)
 
-    products = []
-    total = 0
+    elif request.method == 'POST':
+        user = request.user
+        if user.is_authenticated:
+            product_id = request.data.get('product')
+            quantity = request.data.get('quantity', 1)  # Default to 1 if quantity is not provided
 
-    if basket != 0:
-        product_counts = Basket.objects.filter(user_id=user.id).values('product').annotate(count=Count('id'))
-        duplicate_products = [(product_count['product'], product_count['count']) for product_count in product_counts]
+            try:
+                product = Product.objects.get(id=product_id)
+            except Product.DoesNotExist:
+                return Response({"message": "Product does not exist"}, status=404)
 
-        for product_id, count in duplicate_products:
-            product = Product.objects.get(id=product_id)
-            products.append({'name': product.name, 'number': count, 'common': count * product.price})
-            total += count * product.price
+            cart_item, created = Basket.objects.get_or_create(user=user, product=product)
+            if not created:
+                cart_item.quantity += int(quantity)
+                cart_item.save()
 
-    context = {
-        'products': products,
-        'basket': basket,
-        'total': total,
-    }
-
-    ser = BasketSer(Basket.objects.filter(user_id=user.id), many=True)  # Serialize the basket queryset
-    return Response(
-        {'basket_data': ser.data, 'context': context})  # Return serialized data along with other context information
+            serializer = BasketSer(cart_item)
+            return Response(serializer.data, status=201)
+        else:
+            return Response({"message": "User is not authenticated"}, status=403)

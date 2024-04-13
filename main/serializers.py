@@ -108,6 +108,6 @@ class InfoSer(serializers.ModelSerializer):
 
 class BasketSer(serializers.ModelSerializer):
     class Meta:
-        models = Basket
+        model = Basket
         depth = 4
-        fields = '__all__'
+        fields = ('id', 'user', 'product')
