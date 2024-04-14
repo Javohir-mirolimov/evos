@@ -3,25 +3,25 @@ from main.serializers import *
 
 """//////////<<<< Banner model CRUD start >>>>////////////////"""
 
-#get all
+#   get all
 class GetAllBanner_view(ListAPIView):
     queryset = Banner.objects.all().order_by('-id')
     serializer_class = BannerSer
 
 
-# create
+#   create
 class CreateBanner_view(CreateAPIView):
     queryset = Banner.objects.all()
     serializer_class = BannerSer
 
 
-#update
+#   update
 class UpdateBanner_view(UpdateAPIView):
     queryset = Banner.objects.all()
     serializers_class = BannerSer
 
 
-#delete
+#   delete
 class DeleteBanner_view(DestroyAPIView):
     queryset = Banner.objects.all()
     serializers_class = BannerSer
@@ -31,25 +31,25 @@ class DeleteBanner_view(DestroyAPIView):
 
 """//////////<<<< Product model CRUD start >>>>////////////////"""
 
-#get all
+#   get all
 class GetAllProduct_view(ListAPIView):
     quaryset = Product.objects.all().order_by('-id')
     serializer_class = ProductSer
 
 
-#create
+#   create
 class CreateProduct_view(CreateAPIView):
     quaryset = Product.objects.all()
     serializers_class = ProductSer
 
 
-#update
+#   update
 class Updateprodoct_view(UpdateAPIView):
     quaryset = Product.objects.all()
     serializers_class = ProductSer
 
 
-#delete
+#   delete
 class DeleteProduct_view(DestroyAPIView):
     quaryset = Product.objects.all()
     serializers_class = ProductSer
@@ -61,25 +61,25 @@ class DeleteProduct_view(DestroyAPIView):
 """//////////<<<< Tag model CRUD start >>>>////////////////"""
 
 
-#get all
+#   get all
 class GetAllTag_view(ListAPIView):
     quaryset = Tag.objects.all().order_by('-id')
     serializers_class = TagSer
 
 
-#create
+#   create
 class CreateTag_view(CreateAPIView):
     quaryset = Tag.objects.all()
     serializers_class = TagSer
 
 
-#update
+#   update
 class UpdateTag_view(UpdateAPIView):
     quaryset = Tag.objects.all()
     serializers_class = TagSer
 
 
-#delete
+#   delete
 class DeleteTag_view(DestroyAPIView):
     quaryset = Tag.objects.all()
     serializers_class = TagSer
@@ -169,7 +169,7 @@ class UpdateBranch_view(UpdateAPIView):
 # delete
 class DeleteBranch_view(DestroyAPIView):
     quaryset = Branch.objects.all()
-    serializers_class = BrnachSer
+    serializers_class = BranchSer
 
 
 
@@ -346,7 +346,7 @@ class DeleteNew_view(DestroyAPIView):
 """////////// New model CRUD end ////////////////"""
 
 
-"""//////////<<<< About_job model CRUD start >>>>////////////////"""
+"""//////////<<<< About_us model CRUD start >>>>////////////////"""
 
 #   get all
 class GetAllAbout_us_view(ListAPIView):
@@ -430,7 +430,7 @@ class DeleteTestimonial_view(DestroyAPIView):
     serializers_class = TestimonialSer
 
 
-"""////////// Resume model CRUD end ////////////////"""
+"""////////// Testimonial model CRUD end ////////////////"""
 
 
 """//////////<<<< Contact model CRUD start >>>>////////////////"""
@@ -438,7 +438,7 @@ class DeleteTestimonial_view(DestroyAPIView):
 #  get all
 class GetAllConact_view(ListAPIView):
     quryset = Contact.objects.all().order_by('-id')
-    serializers_class = ConactSer
+    serializers_class = ContactSer
 
 
 #   create
