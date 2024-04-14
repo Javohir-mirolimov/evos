@@ -40,9 +40,13 @@ class Product(models.Model):
     class Meta:
         verbose_name = 'Maxsulot'
         verbose_name_plural = 'Maxsulotlar'
+
 class Basket(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     product = models.ForeignKey(to='Product', on_delete=models.CASCADE)
+    quantity = models.IntegerField()
+
+
 
 
 
