@@ -108,7 +108,7 @@ urlpatterns = [
     #   Testimonial -objects urls end
 
     #   Contact - objects urls start
-    path('get-all-contact/', GetAllConact_view.as_view()),
+    path('get-all-contact/', GetAllContact_view.as_view()),
     path('create-contact/', CreateContact_view.as_view()),
     path('update-contact/<int:pk>/', UpdateContact_view.as_view()),
     path('delete-contact/<int:pk>/', DeleteContact_view.as_view()),

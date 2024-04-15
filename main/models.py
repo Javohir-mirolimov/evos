@@ -83,6 +83,9 @@ class Favorite_food(models.Model):
     description = models.CharField(max_length=255, verbose_name="tarif")
     icon = models.ImageField(upload_to="favorite_food/", verbose_name="icon")
 
+    def __str__(self):
+        return self.description
+
 
 class Branch(models.Model):
     name = models.CharField(max_length=55, verbose_name="nomi")
@@ -157,7 +160,7 @@ class About_job(models.Model):
     text = models.TextField(verbose_name="malumot")
 
     def __str__(self):
-        return self.fullname
+        return self.title
 
     class Meta:
         verbose_name = 'ish malumot '

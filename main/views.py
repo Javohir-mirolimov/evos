@@ -4,7 +4,6 @@ from rest_framework.response import Response
 from .models import *
 from .serializers import *
 
-<<<<<<< HEAD
 # Create your views here.
 
 from django.db.models import Count
@@ -17,8 +16,7 @@ from rest_framework.decorators import api_view
 # from .models import Basket, Product, Info  # Import your models
 
 
-=======
->>>>>>> 41cf315a0481061b03095cbbd84acfe0cdf7d2b2
+
 @api_view(['GET', 'POST'])
 def cart_view(request):
     if request.method == 'GET':

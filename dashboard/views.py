@@ -436,7 +436,7 @@ class DeleteTestimonial_view(DestroyAPIView):
 """//////////<<<< Contact model CRUD start >>>>////////////////"""
 
 #  get all
-class GetAllConact_view(ListAPIView):
+class GetAllContact_view(ListAPIView):
     quryset = Contact.objects.all().order_by('-id')
     serializers_class = ContactSer
 
