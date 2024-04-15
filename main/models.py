@@ -11,17 +11,23 @@ class User(AbstractUser):
         )
     ])
 
+    def __str__(self):
+        return self.User.username
+
     class Meta(AbstractUser.Meta):
         swappable = 'AUTH_USER_MODEL'
         verbose_name = 'User'
         verbose_name_plural = 'Users'
+
+
 class Banner(models.Model):
     title = models.CharField(max_length=55, verbose_name="sarlavha")
-    desciption = models.CharField(max_length=255, verbose_name="tarif")
+    description = models.CharField(max_length=255, verbose_name="tarif")
     image = models.ImageField(upload_to="banner_photo", verbose_name="rasm")
 
     def __str__(self):
         return self.title
+
     class Meta:
         verbose_name = 'Bosh sahifa'
         verbose_name_plural = 'Bosh sahifalar'
@@ -29,7 +35,7 @@ class Banner(models.Model):
 
 class Product(models.Model):
     name = models.CharField(max_length=35, verbose_name="nomi")
-    desciption = models.CharField(max_length=75, verbose_name="tarif")
+    description = models.CharField(max_length=75, verbose_name="tarif")
     retsept = models.TextField( verbose_name="tarif")
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="naxri")
     tag = models.ForeignKey(to='Tag', on_delete=models.CASCADE, verbose_name="teg")
@@ -37,9 +43,11 @@ class Product(models.Model):
 
     def __str__(self):
         return self.name
+
     class Meta:
         verbose_name = 'Maxsulot'
         verbose_name_plural = 'Maxsulotlar'
+
 
 class Basket(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
@@ -47,14 +55,12 @@ class Basket(models.Model):
     quantity = models.IntegerField()
 
 
-
-
-
-
 class Tag(models.Model):
     name = models.CharField(max_length=55, verbose_name="teg")
+
     def __str__(self):
         return self.name
+
     class Meta:
         verbose_name = 'Teg'
         verbose_name_plural = 'Teglar'
@@ -62,7 +68,7 @@ class Tag(models.Model):
 
 class Advantage(models.Model):
     title = models.CharField(max_length=55, verbose_name="sarlavfa")
-    desciption = models.CharField(max_length=255, verbose_name="tarif")
+    description = models.CharField(max_length=255, verbose_name="tarif")
     icon = models.ImageField(upload_to="advantage_icon", verbose_name="icon")
 
     def __str__(self):
@@ -72,8 +78,9 @@ class Advantage(models.Model):
         verbose_name = 'Afzallik'
         verbose_name_plural = 'Afzalliklar'
 
+
 class Favorite_food(models.Model):
-    desciption = models.CharField(max_length=255, verbose_name="tarif")
+    description = models.CharField(max_length=255, verbose_name="tarif")
     icon = models.ImageField(upload_to="favorite_food/", verbose_name="icon")
 
 
@@ -92,10 +99,11 @@ class Branch(models.Model):
         verbose_name = 'Filial'
         verbose_name_plural = 'Filiallar'
 
+
 class Vacancy(models.Model):
     title = models.CharField(max_length=55, verbose_name="sarlavfa")
     text = models.TextField(verbose_name="to'liq malumot")
-    desciption = models.CharField(max_length=75 , verbose_name="tarif")
+    description = models.CharField(max_length=75 , verbose_name="tarif")
 
     def __str__(self):
         return self.title
@@ -103,6 +111,7 @@ class Vacancy(models.Model):
     class Meta:
         verbose_name = 'Ish haqida malomut'
         verbose_name_plural = 'Ishlar haqida malomut'
+
 
 class Send_request(models.Model):
     fullname = models.CharField(max_length=255, verbose_name="ism va falimiya")
@@ -143,11 +152,12 @@ class Career(models.Model):
         verbose_name_plural = 'karyeralar'
 
 
-
 class About_job(models.Model):
     title = models.CharField(max_length=75, verbose_name="sarlavha")
     text = models.TextField(verbose_name="malumot")
 
+    def __str__(self):
+        return self.fullname
 
     class Meta:
         verbose_name = 'ish malumot '
@@ -156,7 +166,7 @@ class About_job(models.Model):
 
 class New(models.Model):
     title = models.CharField(max_length=75 , verbose_name="sarlavha")
-    text  = models.TextField(verbose_name="malumot")
+    text = models.TextField(verbose_name="malumot")
     image = models.ImageField(upload_to="new_photo/", verbose_name="rasm")
 
     def __str__(self):
@@ -169,7 +179,7 @@ class New(models.Model):
 
 class About_us(models.Model):
     title = models.CharField(max_length=55, verbose_name="sarlavha")
-    desciption = models.CharField(max_length=75, verbose_name="tarif")
+    description = models.CharField(max_length=75, verbose_name="tarif")
     text = models.TextField(verbose_name="malumot")
     image = models.ImageField(upload_to="about_us/", verbose_name="rasm")
 
@@ -179,6 +189,7 @@ class About_us(models.Model):
     class Meta:
         verbose_name = 'biz haqimizda'
         verbose_name_plural = 'biz haqimizda'
+
 
 class Resume(models.Model):
     title = models.CharField(max_length=55, verbose_name="saravha")
@@ -197,9 +208,8 @@ class Image(models.Model):
     image = models.ImageField(upload_to="resume_photo/" , verbose_name="rasm")
 
 
-
 class Testimonial(models.Model):
-    fullame = models.CharField(max_length=55, verbose_name="ism familiya")
+    full_name = models.CharField(max_length=55, verbose_name="ism familiya")
     comment = models.TextField(verbose_name="komentariya")
     TYPE_CHOICES = (
         ('telegram', 'telegram'),
@@ -218,8 +228,11 @@ class Testimonial(models.Model):
 
 class Contact(models.Model):
     phone_number = models.CharField(max_length=13, verbose_name="telefon raqam")
-    extra_number = models.CharField(max_length=13 , verbose_name="yetgazib beruvchi telefon raqami")
+    extra_number = models.CharField(max_length=13, verbose_name="yetgazib beruvchi telefon raqami")
     ofis_address = models.CharField(max_length=75, verbose_name="mazil ofis")
+
+    def __str__(self):
+        return self.ofis_address
 
     class Meta:
         verbose_name = 'kontak'
@@ -234,6 +247,9 @@ class Info(models.Model):
     app_store = models.CharField(max_length=255, verbose_name="app_store")
     banner_logo = models.ImageField(upload_to="banner_logo/", verbose_name="banner_logo")
     banner_photo = models.ImageField(upload_to="banner_photo/", verbose_name="banner_photo")
+
+    def __str__(self):
+        return self.telegram
 
     class Meta:
         verbose_name = 'info'
