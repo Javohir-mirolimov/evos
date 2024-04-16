@@ -2,6 +2,12 @@ from .models import *
 from rest_framework import serializers
 
 
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        exclude = ('password',)
+
+
 class BannerSer(serializers.ModelSerializer):
     class Meta:
         model = Banner

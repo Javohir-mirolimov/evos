@@ -11,9 +11,9 @@ from rest_framework.decorators import api_view
 
 #   tortilgan narsalarni qaytadan torib qoyib siz ukaa shuni bir qator korinda oziz ham
 
-# from rest_framework.response import Response
-# from .serializers import BasketSer  # Import your Basket serializer
-# from .models import Basket, Product, Info  # Import your models
+from rest_framework.response import Response
+from .serializers import BasketSer  # Import your Basket serializer
+from .models import Basket, Product, Info  # Import your models
 
 
 
