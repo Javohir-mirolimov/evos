@@ -1,5 +1,6 @@
 from rest_framework.generics import ListAPIView, UpdateAPIView, CreateAPIView, DestroyAPIView
 from main.serializers import *
+from main.models import *
 
 """//////////<<<< Banner model CRUD start >>>>////////////////"""
 
@@ -26,6 +27,7 @@ class DeleteBanner_view(DestroyAPIView):
     queryset = Banner.objects.all()
     serializers_class = BannerSer
 
+
 """////////// Banner model CRUD end ////////////////"""
 
 
@@ -33,25 +35,25 @@ class DeleteBanner_view(DestroyAPIView):
 
 #   get all
 class GetAllProduct_view(ListAPIView):
-    quaryset = Product.objects.all().order_by('-id')
+    queryset = Product.objects.all().order_by('-id')
     serializer_class = ProductSer
 
 
 #   create
 class CreateProduct_view(CreateAPIView):
-    quaryset = Product.objects.all()
+    queryset = Product.objects.all()
     serializers_class = ProductSer
 
 
 #   update
 class Updateprodoct_view(UpdateAPIView):
-    quaryset = Product.objects.all()
+    queryset = Product.objects.all()
     serializers_class = ProductSer
 
 
 #   delete
 class DeleteProduct_view(DestroyAPIView):
-    quaryset = Product.objects.all()
+    queryset = Product.objects.all()
     serializers_class = ProductSer
 
 
@@ -69,8 +71,8 @@ class GetAllTag_view(ListAPIView):
 
 #   create
 class CreateTag_view(CreateAPIView):
-    quaryset = Tag.objects.all()
-    serializers_class = TagSer
+    queryset = Tag.objects.all()
+    serializer_class = TagSer
 
 
 #   update

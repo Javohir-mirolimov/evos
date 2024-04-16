@@ -4,104 +4,104 @@ from rest_framework import serializers
 
 class BannerSer(serializers.ModelSerializer):
     class Meta:
-        models = Banner
+        model = Banner
         fields = '__all__'
 
 
 class ProductSer(serializers.ModelSerializer):
     class Meta:
-        models = Product
+        model = Product
         depth = 2
         fields = '__all__'
 
 
 class TagSer(serializers.ModelSerializer):
     class Meta:
-        models = Tag
+        model = Tag
         depth = 2
         fields = '__all__'
 
 
 class AdvantageSer(serializers.ModelSerializer):
     class Meta:
-        models = Advantage
+        model = Advantage
         fields = '__all__'
 
 
 class Favorite_foodSer(serializers.ModelSerializer):
     class Meta:
-        models = Favorite_food
+        model = Favorite_food
         fields = '__all__'
 
 
 class BranchSer(serializers.ModelSerializer):
     class Meta:
-        models = Branch
+        model = Branch
         fields = '__all__'
 
 
 class VacancySer(serializers.ModelSerializer):
     class Meta:
-        models = Vacancy
+        model = Vacancy
         fields = '__all__'
 
 
 class Send_requestSer(serializers.ModelSerializer):
     class Meta:
-        models = Send_request
+        model = Send_request
         fields = '__all__'
 
 
 class Job_benefitSer(serializers.ModelSerializer):
     class Meta:
-        models = Job_benefit
+        model = Job_benefit
         fields = '__all__'
 
 
 class CareerSer(serializers.ModelSerializer):
     class Meta:
-        models = Career
+        model = Career
         fields = '__all__'
 
 
 class About_jobSer(serializers.ModelSerializer):
     class Meta:
-        models = About_job
+        model = About_job
         fields = '__all__'
 
 
 class NewSer(serializers.ModelSerializer):
     class Meta:
-        models = New
+        model = New
         fields = '__all__'
 
 
 class About_usSer(serializers.ModelSerializer):
     class Meta:
-        models = About_us
+        model = About_us
         fields = '__all__'
 
 
 class ResumeSer(serializers.ModelSerializer):
     class Meta:
-        models = Resume
+        model = Resume
         fields = '__all__'
 
 class TestimonialSer(serializers.ModelSerializer):
     class Meta:
-        models = Testimonial
+        model = Testimonial
         fields = '__all__'
 
 
 class ContactSer(serializers.ModelSerializer):
     class Meta:
-        models = Contact
+        model = Contact
         fields = '__all__'
 
 
 class InfoSer(serializers.ModelSerializer):
     class Meta:
-        models = Info
+        model = Info
         fields = '__all__'
 
 

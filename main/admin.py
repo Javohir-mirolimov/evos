@@ -19,3 +19,4 @@ class EmployeeAdmin(UserAdmin):
     )
 admin.site.register(Product)
 admin.site.register(Tag)
+admin.site.register(Banner)
