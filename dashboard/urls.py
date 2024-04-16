@@ -8,7 +8,7 @@ urlpatterns = [
     path('update-banner/<int:pk>/', UpdateBanner_view.as_view()),
     path('delete-banner/<int:pk>/', DeleteBanner_view.as_view()),
 
-    #   Product urls start
+    #   Product urls starts
     path('get-all-product/', GetAllProduct_view.as_view()),
     path('create-product/', CreateProduct_view.as_view()),
     path('update-product/<int:pk>/', Updateprodoct_view.as_view()),
