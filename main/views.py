@@ -43,16 +43,24 @@ def cart_view(request):
         else:
             return Response({"message": "User is not authenticated"}, status=403)
 
-
-@api_view(['POST'])
-def checkout(request):
-    user = request.user
-    if user.is_authenticated:
-        Basket.objects.filter(user=user).delete()
-        return Response({"message": "Checkout successful"}, status=200)
+@api_view(['GET'])
+def checkout_api_view(request):
+    if request.user.is_authenticated:
+        user = request.user
+        basket = Basket.objects.filter(user_id=user.id).count()
+        products = Basket.objects.filter(user_id=user.id)
     else:
-        return Response({"message": "User is not authenticated"}, status=403)
-
+        basket = 0
+        products = []
+    total = 0
+    for i in products:
+        total += i.product.price
+    response_data = {
+        'basket': basket,
+        "total": total,
+        'contact': Info.objects.last()
+    }
+    return Response(context)
 
 
 @api_view(['PUT'])
