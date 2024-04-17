@@ -1,19 +1,7 @@
-from django.shortcuts import render
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .models import *
-from .serializers import *
-
-# Create your views here.
-
-from django.db.models import Count
-from rest_framework.decorators import api_view
-
-#   tortilgan narsalarni qaytadan torib qoyib siz ukaa shuni bir qator korinda oziz ham
-
-from rest_framework.response import Response
-from .serializers import BasketSer  # Import your Basket serializer
-from .models import Basket, Product, Info  # Import your models
+from .serializers import BasketSer
+from .models import Basket, Product, Info
 
 
 

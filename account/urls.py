@@ -9,3 +9,4 @@ urlpatterns = (
     path('user-delete/<int:pk>/', views.delete_user),
 )
 
+
