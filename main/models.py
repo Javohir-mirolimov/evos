@@ -30,7 +30,7 @@ class Banner(models.Model):
 class Product(models.Model):
     name = models.CharField(max_length=35, verbose_name="nomi")
     description = models.CharField(max_length=75, verbose_name="tarif")
-    retsept = models.TextField( verbose_name="tarif")
+    retsept = models.TextField(verbose_name="tarif")
     price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="naxri")
     tag = models.ForeignKey(to='Tag', on_delete=models.CASCADE, verbose_name="teg")
     image = models.ImageField(upload_to="product_photo", verbose_name="rasm")
