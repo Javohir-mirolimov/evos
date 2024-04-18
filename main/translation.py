@@ -56,3 +56,8 @@ class About_usTranslationOptions(TranslationOptions):
 @register(Resume)
 class ResumeTranslationOptions(TranslationOptions):
     fields = (  'title', 'text')
+
+
+@register(Testimonial)
+class TestimonialTranslationOptions(TranslationOptions):
+    fields = (  'comment',)
