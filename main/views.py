@@ -58,7 +58,8 @@ def checkout_api_view(request):
     response_data = {
         'basket': basket,
         "total": total,
-        'contact': Info.objects.last()
+
+
     }
     return Response(context)
 
@@ -96,3 +97,38 @@ def remove_from_cart(request):
         return Response({"message": "Item removed from cart"}, status=status.HTTP_200_OK)
     except Basket.DoesNotExist:
         return Response({"message": "Cart item does not exist"}, status=status.HTTP_404_NOT_FOUND)
+
+
+@api_view(['POST'])
+def create_order(request):
+    if request.method == 'POST':
+        data = request.data
+        firstname = data.get('firstname')
+        lastname = data.get('lastname')
+        street = data.get('street')
+        city = data.get('city')
+        phone_number = data.get('phone_number')
+        user = request.user
+        if not user.is_authenticated:
+            return Response({"error": "User is not authenticated"}, status=401)
+
+        products = ""
+        total = 0
+        product_counts = Basket.objects.filter(user_id=user.id).values('product').annotate(count=Count('id'))
+        duplicate_products = [(product_count['product'], product_count['count']) for product_count in product_counts]
+
+        for product_id, count in duplicate_products:
+            product = get_object_or_404(Product, id=product_id)
+            products += f"Maxsulot nomi: {product.title}, Maxsulot soni {count}, Maxsulot narxi: {product.price}, Maxsulot umumiy summasi: {count * product.price}"
+            total += count * product.price
+
+        order = Order.objects.create(
+            firstname=firstname,
+            lastname=lastname,
+            street=street,
+            city=city,
+            phone_number=phone_number,
+            products=products,
+            total=total
+        )
+        return JsonResponse({"success": "Order created successfully", "order_id": order.id})

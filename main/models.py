@@ -213,3 +213,17 @@ class Info(models.Model):
         verbose_name = 'Info'
         verbose_name_plural = 'info'
 
+
+
+class Order(models.Model):
+    firstname = models.CharField(max_length=255)
+    lastname = models.CharField(max_length=255)
+    street = models.CharField(max_length=255)
+    city = models.CharField(max_length=255)
+    phone_number = models.CharField(max_length=255)
+    products = models.TextField()
+    total = models.DecimalField(max_digits=20, decimal_places=2)
+
+
+
+
