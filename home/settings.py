@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-vdk*)tx@bmdrewie%b@oe@19v3#y+$@3da8c%c1by$3k%7j$o1
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['joxa.pythonanywhere.com']
 
 
 # Application definition
